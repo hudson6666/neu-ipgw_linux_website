@@ -27,11 +27,7 @@
             </ul>
             <pre style="margin-top: 0;"><code class="hljs smalltalk">
 <span class="hljs-string">$ </span>sh -c <span id="cmd"
-                    class="hljs-comment">"$(curl -fsSL https://ipgw.tk/get-ipgw.sh)"</span>
-
-<span class="hljs-number"># Or rather by two steps</span>
-<span class="hljs-string">$ </span><span id="cmd2">curl -O https://ipgw.tk/get-ipgw.sh</span>
-<span class="hljs-string">$ </span>sh ./get-ipgw.sh
+                    class="hljs-comment">"$(curl ipgw.tk)"</span>
 
 </code></pre>
             Made by NEU Pioneer | Geeks of NEU
@@ -47,14 +43,12 @@
     $("#curl-tab").click(function () {
         $("#curl-tab").addClass("active");
         $("#wget-tab").removeClass("active");
-        $("#cmd").html('"$(curl -fsSL https://ipgw.tk/get-ipgw.sh)"');
-        $("#cmd2").html('curl -O https://ipgw.tk/get-ipgw.sh')
+        $("#cmd").html('"$(curl ipgw.tk)"');
     });
     $("#wget-tab").click(function () {
         $("#wget-tab").addClass("active");
         $("#curl-tab").removeClass("active");
-        $("#cmd").html('"$(wget https://ipgw.tk/get-ipgw.sh -O -)"');
-        $("#cmd2").html('wget https://ipgw.tk/get-ipgw.sh')
+        $("#cmd").html('"$(wget ipgw.tk -O -)"');
     })
 </script>
 

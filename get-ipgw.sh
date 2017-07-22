@@ -8,7 +8,7 @@
 #########################################################################
 
 main() {
-	if which tput >/dev/null 2>&1; then
+	if [ -x "$(command -v tput)" ]; then
 		ncolors=$(tput colors)
 	fi
 	if [ -t 1 ] && [ -n "$ncolors" ] && [ "$ncolors" -ge 8 ]; then
@@ -35,10 +35,8 @@ main() {
 	done
 	DIR="$( cd -P "$( dirname "$SOURCE"  )" && pwd  )"
 
-	CHECK_CURL_INSTALLED=$(ls /usr/bin | grep -x curl | wc -l)
-	if [ ! $CHECK_CURL_INSTALLED -ge 1 ]; then
-		CHECK_WGET_INSTALLED=$(ls /usr/bin | grep -x wget | wc -l)
-		if [ ! $CHECK_WGET_INSTALLED -ge 1 ]; then
+	if [ ! -x "$(command -v curl)" ]; then
+		if [ ! -x "$(command -v wget)" ]; then
 			echo "Error: Neither curl nor wget is installed"
 		else
 			cd /tmp
@@ -57,7 +55,7 @@ main() {
 		cd /tmp
 		mkdir -p neu-ipgw_linux
 		cd neu-ipgw_linux
-		printf "${BLUE}Start downloading neu-ipgw...${NORMAL}\n"
+		printf "${BLUE}Downloading neu-ipgw...${NORMAL}\n"
 		curl -o ipgw.sh https://ipgw.tk/neu-ipgw_linux/ipgw.sh
 		curl -o install.sh https://ipgw.tk/neu-ipgw_linux/install.sh
 		curl -o uninstall.sh https://ipgw.tk/neu-ipgw_linux/uninstall.sh
